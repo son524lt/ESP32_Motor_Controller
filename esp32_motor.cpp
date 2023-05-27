@@ -7,9 +7,17 @@ esp32_motor::esp32_motor(int8_t forward_pin, int8_t backward_pin, int8_t channel
     backward = channel_number_backward;
     ledcSetup(channel_number_backward, frequency, resolution);
     ledcSetup(channel_number_forward, frequency, resolution);
+    maxPWM = (uint)pow(2,resolution)-1;
 }
 
 void esp32_motor::Run(int PWM) {
+    if (PWM>maxPWM) PWM = maxPWM;
+    if (PWM<-maxPWM) PWM = -maxPWM;
     ledcWrite(forward, (PWM>0)?(PWM):(0));
     ledcWrite(backward, (PWM>0)?(0):(-PWM));
+}
+
+void esp32_motor::Stop() {
+    ledcWrite(forward,maxPWM);
+    ledcWrite(backward,maxPWM);
 }
