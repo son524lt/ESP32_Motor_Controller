@@ -11,13 +11,8 @@ esp32_motor::esp32_motor(int8_t forward_pin, int8_t backward_pin, int8_t channel
 }
 
 void esp32_motor::Run(int PWM) {
-    Serial.print(maxPWM);
-    Serial.print("\t");
-    Serial.print(PWM);
-    Serial.print("\t");
     if (PWM>maxPWM) {PWM = maxPWM;}
     if (PWM<-maxPWM) {PWM = -maxPWM;}
-    Serial.println(PWM);
     ledcWrite(forward, (PWM>0)?(PWM):(0));
     ledcWrite(backward, (PWM>0)?(0):(-PWM));
 }
