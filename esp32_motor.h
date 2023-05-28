@@ -9,7 +9,7 @@ class esp32_motor
 {
 private:
 public:
-    uint maxPWM;
+    int maxPWM;
     uint8_t forward, backward;
     esp32_motor(int8_t forward_pin, int8_t backward_pin, int8_t channel_number, int8_t channel_number_backward, int frequency, int resolution);
     void Run(int PWM);
