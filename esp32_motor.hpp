@@ -1,7 +1,4 @@
-#include "unistd.h"
 #include <Arduino.h>
-#include "esp32-hal-ledc.h"
-
 #ifndef _ESP32_MOTOR_H_
 #define _ESP32_MOTOR_H_
 
